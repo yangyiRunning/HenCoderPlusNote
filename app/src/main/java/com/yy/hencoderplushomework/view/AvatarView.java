@@ -59,6 +59,7 @@ public class AvatarView extends View {
                 getWidth() / 2 - bitmap.getWidth() / 2,
                 getHeight() / 2 - bitmap.getHeight() / 2,
                 paint);
+        //回收离屏缓冲和融合方式
         paint.setXfermode(null);
         canvas.restoreToCount(saveCount);
     }

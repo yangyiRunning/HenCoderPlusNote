@@ -1,18 +1,26 @@
 package com.yy.hencoderplushomework;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ScrollView;
 
 import com.yy.hencoderplushomework.view.AvatarView;
+import com.yy.hencoderplushomework.view.ImageTextView;
+import com.yy.hencoderplushomework.view.MultiLineTextView;
+import com.yy.hencoderplushomework.view.PagingRotateView;
 import com.yy.hencoderplushomework.view.DashBoardView;
 import com.yy.hencoderplushomework.view.PieChartView;
 import com.yy.hencoderplushomework.view.SportView;
@@ -31,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String DASH_BOARD_VIEW = "仪表盘";
     public static final String SPORT_VIEW = "运动表盘";
     public static final String TEXT_ALIGN_VIEW = "文本内容无关大小绝对靠边";
+    public static final String MULTI_LINE_TEXT_VIEW = "多行文字";
     public static final String AVATAR_VIEW = "圆形头像";
+    public static final String PAGING_ROTATE = "翻页+波纹";
+    public static final String IMAGE_TEXT = "图文混合排版";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 false));
         buttonRecyclerView.setAdapter(new ButtonAdapter(this,
                 getStrings()));
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(buttonRecyclerView);
 
         container = findViewById(R.id.container);
 
@@ -87,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
                 itemButton = itemView.findViewById(R.id.itemButton);
                 itemButton.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onClick(View v) {
                         container.removeAllViews();
@@ -106,6 +120,16 @@ public class MainActivity extends AppCompatActivity {
                             case AVATAR_VIEW:
                                 container.addView(new AvatarView(context));
                                 break;
+                            case PAGING_ROTATE:
+                                container.addView(new PagingRotateView(context));
+                                break;
+                            case MULTI_LINE_TEXT_VIEW:
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    container.addView(new MultiLineTextView(context));
+                                }
+                                break;
+                            case IMAGE_TEXT:
+                                container.addView(new ImageTextView(context));
                             default:
                                 break;
                         }
@@ -123,11 +147,14 @@ public class MainActivity extends AppCompatActivity {
 
     private List<String> getStrings() {
         List<String> strings = new ArrayList<>();
+        strings.add(PAGING_ROTATE);
         strings.add(PIE_CHART_VIEW);
         strings.add(DASH_BOARD_VIEW);
         strings.add(SPORT_VIEW);
-        strings.add(TEXT_ALIGN_VIEW);
         strings.add(AVATAR_VIEW);
+        strings.add(IMAGE_TEXT);
+        strings.add(MULTI_LINE_TEXT_VIEW);
+        strings.add(TEXT_ALIGN_VIEW);
         return strings;
     }
 }
