@@ -27,6 +27,7 @@ public class FloatingEdit extends android.support.v7.widget.AppCompatEditText {
     private static final int DURATION = 300;
     private static final float TEXT_MARGIN = DensityUtil.dp2px(12);
     private static final int TEXT_LEFT = (int) DensityUtil.dp2px(5);
+    private static final int TEXT_RIGHT = (int) DensityUtil.dp2px(5);
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Rect rect = new Rect();
     private ObjectAnimator floatingAnimator;
@@ -148,9 +149,22 @@ public class FloatingEdit extends android.support.v7.widget.AppCompatEditText {
         float paddingAnimatorOffset = initPaddingTopValue * (1 - fraction);
         //初始值+偏移量
         float top = initPaddingTopValue + paddingAnimatorOffset;
+        canvas.save();
         canvas.drawText(getHint().toString(),
                 TEXT_LEFT,
                 top,
                 paint);
+        canvas.restore();
+
+        canvas.save();
+        paint.setColor(ContextCompat.getColor(getContext(), R.color.colorRed));
+        paint.setStrokeWidth(DensityUtil.dp2px(3));
+        float lineY = getHeight() - rect.bottom / 2;
+        canvas.drawLine(TEXT_LEFT,
+                lineY,
+                getWidth() - TEXT_RIGHT,
+                lineY,
+                paint);
+        canvas.restore();
     }
 }
