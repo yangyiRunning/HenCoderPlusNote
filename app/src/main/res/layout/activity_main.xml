@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +8,12 @@
     tools:context=".MainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/buttonRecyclerView"
+        android:id="@+id/buttonRecyclerView_number1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/buttonRecyclerView_number2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -15,6 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
+
+    <!--&lt;!&ndash;xml属性设置演示&ndash;&gt;-->
+    <!--<com.yy.hencoderplushomework.view.FloatingEdit-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:isFloatingUse="true" />-->
 
     <FrameLayout
         android:id="@+id/container"

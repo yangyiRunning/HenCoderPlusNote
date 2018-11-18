@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.AttributeSet;
 import android.view.View;
 
 import com.yy.hencoderplushomework.R;
@@ -25,6 +27,10 @@ public class ImageTextView extends View {
 
     public ImageTextView(Context context) {
         super(context);
+    }
+
+    public ImageTextView(Context context,  @Nullable AttributeSet attrs) {
+        super(context, attrs);
     }
 
     {

@@ -7,6 +7,8 @@ import android.graphics.Path;
 import android.graphics.PathDashPathEffect;
 import android.graphics.PathMeasure;
 import android.graphics.RectF;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.view.View;
 
 import com.yy.hencoderplushomework.util.DensityUtil;
@@ -31,6 +33,10 @@ public class DashBoardView extends View {
 
     public DashBoardView(Context context) {
         super(context);
+    }
+
+    public DashBoardView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
     }
 
     {

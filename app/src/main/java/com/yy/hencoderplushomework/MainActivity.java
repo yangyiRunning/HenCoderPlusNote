@@ -1,11 +1,14 @@
 package com.yy.hencoderplushomework;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -15,9 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ScrollView;
+import android.widget.LinearLayout;
 
 import com.yy.hencoderplushomework.view.AvatarView;
+import com.yy.hencoderplushomework.view.FloatingEdit;
 import com.yy.hencoderplushomework.view.ImageTextView;
 import com.yy.hencoderplushomework.view.MultiLineTextView;
 import com.yy.hencoderplushomework.view.PagingRotateView;
@@ -43,21 +47,32 @@ public class MainActivity extends AppCompatActivity {
     public static final String AVATAR_VIEW = "圆形头像";
     public static final String PAGING_ROTATE = "翻页+波纹";
     public static final String IMAGE_TEXT = "图文混合排版";
+    public static final String MATERIAL_EDIT_TEXT = "floating编辑框";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView buttonRecyclerView = findViewById(R.id.buttonRecyclerView);
-        buttonRecyclerView.setLayoutManager(new LinearLayoutManager(
+        RecyclerView buttonRecyclerViewNumber1 = findViewById(R.id.buttonRecyclerView_number1);
+        buttonRecyclerViewNumber1.setLayoutManager(new LinearLayoutManager(
                 this,
                 LinearLayoutManager.HORIZONTAL,
                 false));
-        buttonRecyclerView.setAdapter(new ButtonAdapter(this,
-                getStrings()));
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(buttonRecyclerView);
+        buttonRecyclerViewNumber1.setAdapter(new ButtonAdapter(this,
+                getStringsNumber1()));
+        SnapHelper snapHelperNumber1 = new LinearSnapHelper();
+        snapHelperNumber1.attachToRecyclerView(buttonRecyclerViewNumber1);
+
+        RecyclerView buttonRecyclerViewNumber2 = findViewById(R.id.buttonRecyclerView_number2);
+        buttonRecyclerViewNumber2.setLayoutManager(new LinearLayoutManager(
+                this,
+                LinearLayoutManager.HORIZONTAL,
+                false));
+        buttonRecyclerViewNumber2.setAdapter(new ButtonAdapter(this,
+                getStringsNumber2()));
+        SnapHelper snapHelperNumber2 = new LinearSnapHelper();
+        snapHelperNumber2.attachToRecyclerView(buttonRecyclerViewNumber2);
 
         container = findViewById(R.id.container);
 
@@ -130,6 +145,28 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case IMAGE_TEXT:
                                 container.addView(new ImageTextView(context));
+                            case MATERIAL_EDIT_TEXT:
+                                LinearLayout linearLayout = new LinearLayout(context);
+                                linearLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                                        ViewGroup.LayoutParams.MATCH_PARENT,
+                                        ViewGroup.LayoutParams.WRAP_CONTENT
+                                ));
+                                linearLayout.setOrientation(LinearLayout.VERTICAL);
+                                AppCompatEditText editText = new AppCompatEditText(context);
+                                editText.setLayoutParams(new ViewGroup.LayoutParams(
+                                        ViewGroup.LayoutParams.MATCH_PARENT,
+                                        ViewGroup.LayoutParams.WRAP_CONTENT
+                                ));
+                                editText.setHint("作为参照的原始EditText");
+                                editText.setBackgroundColor(ContextCompat.getColor(
+                                        context, android.R.color.holo_blue_light
+                                ));
+                                linearLayout.addView(editText);
+                                FloatingEdit floatingEdit = new FloatingEdit(context);
+                                floatingEdit.setFloatingUse(true);
+                                linearLayout.addView(floatingEdit);
+                                container.addView(linearLayout);
+                                break;
                             default:
                                 break;
                         }
@@ -145,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private List<String> getStrings() {
+    private List<String> getStringsNumber1() {
         List<String> strings = new ArrayList<>();
         strings.add(PAGING_ROTATE);
         strings.add(PIE_CHART_VIEW);
@@ -155,6 +192,12 @@ public class MainActivity extends AppCompatActivity {
         strings.add(IMAGE_TEXT);
         strings.add(MULTI_LINE_TEXT_VIEW);
         strings.add(TEXT_ALIGN_VIEW);
+        return strings;
+    }
+
+    private List<String> getStringsNumber2() {
+        List<String> strings = new ArrayList<>();
+        strings.add(MATERIAL_EDIT_TEXT);
         return strings;
     }
 }

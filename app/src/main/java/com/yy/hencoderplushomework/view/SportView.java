@@ -5,7 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.AttributeSet;
 import android.view.View;
 
 import com.yy.hencoderplushomework.R;
@@ -28,6 +30,10 @@ public class SportView extends View {
 
     public SportView(Context context) {
         super(context);
+    }
+
+    public SportView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
     }
 
     {

@@ -8,8 +8,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.util.AttributeSet;
 import android.view.View;
 
 import com.yy.hencoderplushomework.util.BitmapUtil;
@@ -31,6 +33,10 @@ public class AvatarView extends View {
 
     public AvatarView(Context context) {
         super(context);
+    }
+
+    public AvatarView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
     }
 
     {
