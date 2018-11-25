@@ -24,9 +24,9 @@
 
     <!--&lt;!&ndash;xml属性设置演示&ndash;&gt;-->
     <!--<com.yy.hencoderplushomework.view.FloatingEdit-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:isFloatingUse="true" />-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:isFloatingUse="true" />-->
 
     <FrameLayout
         android:id="@+id/container"

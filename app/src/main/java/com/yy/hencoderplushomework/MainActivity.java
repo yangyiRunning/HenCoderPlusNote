@@ -1,7 +1,6 @@
 package com.yy.hencoderplushomework;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -48,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String PAGING_ROTATE = "翻页+波纹";
     public static final String IMAGE_TEXT = "图文混合排版";
     public static final String MATERIAL_EDIT_TEXT = "floating编辑框";
+    public static final String FLOW_LAYOUT = "流式布局";
+    public static final String SQUARE_IMAGE_VIEW = "方形imageView";
+    public static final String CIRCLE_VIEW = "圆形View";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case IMAGE_TEXT:
                                 container.addView(new ImageTextView(context));
+                                break;
                             case MATERIAL_EDIT_TEXT:
                                 LinearLayout linearLayout = new LinearLayout(context);
                                 linearLayout.setLayoutParams(new LinearLayout.LayoutParams(
@@ -166,6 +169,17 @@ public class MainActivity extends AppCompatActivity {
                                 floatingEdit.setFloatingUse(true);
                                 linearLayout.addView(floatingEdit);
                                 container.addView(linearLayout);
+                                break;
+                            case SQUARE_IMAGE_VIEW:
+                                View squareImgView = LayoutInflater.from(context).inflate(R.layout.view_square_img, null);
+                                container.addView(squareImgView);
+                                break;
+                            case FLOW_LAYOUT:
+
+                                break;
+                            case CIRCLE_VIEW:
+                                View circleImgView = LayoutInflater.from(context).inflate(R.layout.view_circle, null);
+                                container.addView(circleImgView);
                                 break;
                             default:
                                 break;
@@ -198,6 +212,9 @@ public class MainActivity extends AppCompatActivity {
     private List<String> getStringsNumber2() {
         List<String> strings = new ArrayList<>();
         strings.add(MATERIAL_EDIT_TEXT);
+        strings.add(FLOW_LAYOUT);
+        strings.add(SQUARE_IMAGE_VIEW);
+        strings.add(CIRCLE_VIEW);
         return strings;
     }
 }
