@@ -26,6 +26,7 @@ import com.yy.hencoderplushomework.view.MultiLineTextView;
 import com.yy.hencoderplushomework.view.PagingRotateView;
 import com.yy.hencoderplushomework.view.DashBoardView;
 import com.yy.hencoderplushomework.view.PieChartView;
+import com.yy.hencoderplushomework.view.SecondOrderBezier;
 import com.yy.hencoderplushomework.view.SportView;
 import com.yy.hencoderplushomework.view.TextAlignView;
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String FLOW_LAYOUT = "流式布局";
     public static final String SQUARE_IMAGE_VIEW = "方形imageView";
     public static final String CIRCLE_VIEW = "圆形View";
+    public static final String BEZIER_VIEW = "二阶贝塞尔";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
                                 View circleImgView = LayoutInflater.from(context).inflate(R.layout.view_circle, null);
                                 container.addView(circleImgView);
                                 break;
+                            case BEZIER_VIEW:
+                                container.addView(new SecondOrderBezier(context));
+                                break;
                             default:
                                 break;
                         }
@@ -215,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
         strings.add(FLOW_LAYOUT);
         strings.add(SQUARE_IMAGE_VIEW);
         strings.add(CIRCLE_VIEW);
+        strings.add(BEZIER_VIEW);
         return strings;
     }
 }

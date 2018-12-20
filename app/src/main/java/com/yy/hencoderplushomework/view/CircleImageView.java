@@ -9,6 +9,12 @@ import android.view.View;
 
 import com.yy.hencoderplushomework.util.DensityUtil;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import okio.Okio;
+
 /**
  * 圆形View
  *
@@ -46,7 +52,6 @@ public class CircleImageView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         canvas.drawColor(Color.BLUE);
         canvas.drawCircle(getWidth() / 2,
                 getHeight() / 2,
