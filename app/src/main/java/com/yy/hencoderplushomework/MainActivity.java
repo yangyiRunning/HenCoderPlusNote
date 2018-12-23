@@ -18,7 +18,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.yy.hencoderplushomework.touch.TouchPerClickView;
 import com.yy.hencoderplushomework.view.AvatarView;
 import com.yy.hencoderplushomework.view.FloatingEdit;
 import com.yy.hencoderplushomework.view.ImageTextView;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String SQUARE_IMAGE_VIEW = "方形imageView";
     public static final String CIRCLE_VIEW = "圆形View";
     public static final String BEZIER_VIEW = "二阶贝塞尔";
+    public static final String TOUCH_VIEW_PER_CLICK = "触摸模拟点击";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,16 @@ public class MainActivity extends AppCompatActivity {
                 getStringsNumber2()));
         SnapHelper snapHelperNumber2 = new LinearSnapHelper();
         snapHelperNumber2.attachToRecyclerView(buttonRecyclerViewNumber2);
+
+        RecyclerView buttonRecyclerViewNumber3 = findViewById(R.id.buttonRecyclerView_number3);
+        buttonRecyclerViewNumber3.setLayoutManager(new LinearLayoutManager(
+                this,
+                LinearLayoutManager.HORIZONTAL,
+                false));
+        buttonRecyclerViewNumber3.setAdapter(new ButtonAdapter(this,
+                getStringsNumber3()));
+        SnapHelper snapHelperNumber3 = new LinearSnapHelper();
+        snapHelperNumber3.attachToRecyclerView(buttonRecyclerViewNumber3);
 
         container = findViewById(R.id.container);
 
@@ -186,6 +199,16 @@ public class MainActivity extends AppCompatActivity {
                             case BEZIER_VIEW:
                                 container.addView(new SecondOrderBezier(context));
                                 break;
+                            case TOUCH_VIEW_PER_CLICK:
+                                TouchPerClickView touchPerClickView = new TouchPerClickView(context);
+                                touchPerClickView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                container.addView(touchPerClickView);
+                                break;
                             default:
                                 break;
                         }
@@ -221,6 +244,12 @@ public class MainActivity extends AppCompatActivity {
         strings.add(SQUARE_IMAGE_VIEW);
         strings.add(CIRCLE_VIEW);
         strings.add(BEZIER_VIEW);
+        return strings;
+    }
+
+    private List<String> getStringsNumber3(){
+        List<String> strings = new ArrayList<>();
+        strings.add(TOUCH_VIEW_PER_CLICK);
         return strings;
     }
 }

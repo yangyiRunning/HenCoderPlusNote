@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.v7.util.DiffUtil;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+/**
+ * 二阶贝塞尔
+ */
 public class SecondOrderBezier extends View {
 
     private Paint mPaintBezier;

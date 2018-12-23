@@ -9,12 +9,6 @@ import android.view.View;
 
 import com.yy.hencoderplushomework.util.DensityUtil;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.concurrent.ThreadPoolExecutor;
-
-import okio.Okio;
-
 /**
  * 圆形View
  *
