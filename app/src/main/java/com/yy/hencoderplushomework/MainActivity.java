@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.yy.hencoderplushomework.touch.ScalableImageView;
 import com.yy.hencoderplushomework.touch.TouchPerClickView;
 import com.yy.hencoderplushomework.view.AvatarView;
 import com.yy.hencoderplushomework.view.FloatingEdit;
@@ -34,6 +35,8 @@ import com.yy.hencoderplushomework.view.TextAlignView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dalvik.system.PathClassLoader;
 
 /**
  * @author yangyi 2018年11月05日23:42:58
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String CIRCLE_VIEW = "圆形View";
     public static final String BEZIER_VIEW = "二阶贝塞尔";
     public static final String TOUCH_VIEW_PER_CLICK = "触摸模拟点击";
+    public static final String SCALABLE_IMAGE_VIEW = "双向滑动的可收缩的imageView";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -190,7 +194,8 @@ public class MainActivity extends AppCompatActivity {
                                 container.addView(squareImgView);
                                 break;
                             case FLOW_LAYOUT:
-
+                                View tagLayout = LayoutInflater.from(context).inflate(R.layout.view_tag_layout, null);
+                                container.addView(tagLayout);
                                 break;
                             case CIRCLE_VIEW:
                                 View circleImgView = LayoutInflater.from(context).inflate(R.layout.view_circle, null);
@@ -208,6 +213,9 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                                 container.addView(touchPerClickView);
+                                break;
+                            case SCALABLE_IMAGE_VIEW:
+                                container.addView(new ScalableImageView(context));
                                 break;
                             default:
                                 break;
@@ -247,8 +255,9 @@ public class MainActivity extends AppCompatActivity {
         return strings;
     }
 
-    private List<String> getStringsNumber3(){
+    private List<String> getStringsNumber3() {
         List<String> strings = new ArrayList<>();
+        strings.add(SCALABLE_IMAGE_VIEW);
         strings.add(TOUCH_VIEW_PER_CLICK);
         return strings;
     }
